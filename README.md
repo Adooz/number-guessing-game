@@ -27,3 +27,5 @@ This is a simple number guessing game implemented using HTML, CSS, and JavaScrip
 ## Credits
 
 This game was created by Kingsley Ndonake.
+
+Open to contributions
