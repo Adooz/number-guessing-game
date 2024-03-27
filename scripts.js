@@ -9,13 +9,6 @@ const guessField = document.querySelector('.guessField');
 
 let guessCount = 1;
 let resetButton;
-
-// Create the reset button initially
-resetButton = document.createElement('button');
-resetButton.textContent = 'Start new game';
-document.body.append(resetButton);
-resetButton.classList.add("resetButton");
-
 guessField.focus();
 
 function checkGuess() {
@@ -38,9 +31,9 @@ function checkGuess() {
         lastResult.textContent = 'Wrong!';
         lastResult.classList.add("wrong");
         if(userGuess < randomNumber) {
-            lowOrHi.textContent = 'Last guess was too low!';
+        lowOrHi.textContent = 'Last guess was too low!';
         } else if(userGuess > randomNumber) {
-            lowOrHi.textContent = 'Last guess was too high!';
+        lowOrHi.textContent = 'Last guess was too high!';
         }
     }
 
@@ -51,12 +44,14 @@ function checkGuess() {
 
 guessSubmit.addEventListener('click', checkGuess);
 
-// Add event listener for reset button
-resetButton.addEventListener('click', resetGame);
-
 function setGameOver() {
     guessField.disabled = true;
     guessSubmit.disabled = true;
+    resetButton = document.createElement('button');
+    resetButton.textContent = 'Start new game';
+    document.body.append(resetButton);
+    resetButton.classList.add("resetButton");
+    resetButton.addEventListener('click', resetGame);    
 }
 
 // Reset the Game to normal
@@ -68,13 +63,16 @@ function resetGame() {
         resetParas[i].textContent = '';
     }
 
+    resetButton.parentNode.removeChild(resetButton);
+
     guessField.disabled = false;
     guessSubmit.disabled = false;
     guessField.value = '';
     guessField.focus();
 
-    lastResult.textContent = '';
-    lastResult.style.backgroundColor = '';
+    window.location.reload(false)
+
+    // lastResult.style.backgroundColor = 'white';
 
     randomNumber = Math.floor(Math.random() * 100) + 1;
 }
